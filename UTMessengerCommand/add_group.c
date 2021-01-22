@@ -9,6 +9,7 @@
 #define FALSE 0
 #define TRUE 1
 
+/*This function executes when the user wants to create a new group*/
 int new_group(user_info* head_user, user_info* admin, group* head_group)
 {
 	char* input = (char*)malloc(0);
@@ -29,6 +30,7 @@ int new_group(user_info* head_user, user_info* admin, group* head_group)
 	return create_group(head_group, input, admin->username);
 }
 
+/*This function executes when the group's admin wants to add a new user to the group*/
 int add_to(user_info* head_user, user_info* user, group* head_group)
 {
 	char* group_name = (char*)malloc(0);
@@ -46,7 +48,7 @@ int add_to(user_info* head_user, user_info* user, group* head_group)
 		if (enter_check != ENTER) clear_buffer();
 		return FALSE;
 	}
-	if (strcmp(user->username, gp->admin_username) != 0)
+	if (strcmp(user->username, gp->admin_username) != 0) /*Checking if the user is the group's admin*/
 	{
 		printf("\tYou are not this group's admin.\n");
 		if (enter_check != ENTER) clear_buffer();
@@ -69,6 +71,7 @@ int add_to(user_info* head_user, user_info* user, group* head_group)
 	return add_user_to_group(gp, new_member);
 }
 
+/*This function is the process of adding a new member to the group's node*/
 int add_user_to_group(group* gp, user_info* user)
 {
 	if (!strcmp(gp->admin_username, user->username))

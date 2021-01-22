@@ -8,6 +8,7 @@
 #define FALSE 0
 #define TRUE 1
 
+/*This function executes when the user wants to change their username*/
 int edit_username(user_info* user, user_info* head_user, group* head_group, message* head_message)
 {
 	char* input = (char*)malloc(0);
@@ -36,6 +37,7 @@ int edit_username(user_info* user, user_info* head_user, group* head_group, mess
 	return TRUE;
 }
 
+/*This function executes when the user wants to change their password*/
 int edit_password(user_info* user)
 {
 	char* input = (char*)malloc(0);
@@ -57,6 +59,7 @@ int edit_password(user_info* user)
 	return TRUE;
 }
 
+/*After editing username this function changes user's username to the new one in groups*/
 void edit_username_in_groups(user_info* user, group* head_group, char* input)
 {
 	while ((head_group = head_group->next) != NULL)
@@ -68,6 +71,7 @@ void edit_username_in_groups(user_info* user, group* head_group, char* input)
 					head_group->users[i] = input;
 }
 
+/*After editing username this function changes user's username to the new one in the messages*/
 void edit_username_in_messages(user_info* user, message* head_message, char* input)
 {
 	while ((head_message = head_message->next) != NULL)

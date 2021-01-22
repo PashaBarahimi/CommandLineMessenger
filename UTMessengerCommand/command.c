@@ -22,6 +22,7 @@
 #define ADD_TO 16
 #define HELP 17
 
+/*This function prints all the valid commands*/
 void help(int section)
 {
 	switch (section)
@@ -49,6 +50,7 @@ void help(int section)
 	}
 }
 
+/*The process of checking the entered command*/
 int command(int section, int* enter_check)
 {
 	while (TRUE)

@@ -12,6 +12,7 @@
 #define SIGN_UP 5
 #define CLOSE 6
 
+/*Program starts here*/
 int main()
 {
 	user_info* head_user = (user_info*)malloc(sizeof(user_info));

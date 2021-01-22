@@ -10,6 +10,7 @@
 #define TRUE 1
 #define PHONE_NUMBER_LENGTH 11
 
+/*This function makes a new struct date_time*/
 date_time* date(void)
 {
 	time_t now;
@@ -29,6 +30,7 @@ date_time* date(void)
 	return new_date;
 }
 
+/*This function returns the message earmark*/
 int get_earmark(message* head)
 {
 	if (head->next == NULL)
@@ -41,7 +43,7 @@ int get_earmark(message* head)
 	}
 }
 
-
+/*This function makes a new user_info node*/
 int add_user(user_info* head, char* username, char* password, char* phone_number, date_time* sign_up_date)
 {
 	user_info* new_user = (user_info*)malloc(sizeof(user_info));
@@ -60,6 +62,7 @@ int add_user(user_info* head, char* username, char* password, char* phone_number
 	return TRUE;
 }
 
+/*This function makes a new message node*/
 int add_message(message* head, char* sender_username, char* receiver_username, char* input_message, date_time* message_date)
 {
 	message* new_message = (message*)malloc(sizeof(message));
@@ -78,6 +81,7 @@ int add_message(message* head, char* sender_username, char* receiver_username, c
 	return TRUE;
 }
 
+/*This function makes a new group node*/
 int create_group(group* head, char* name, char* admin_username)
 {
 	group* new_group = (group*)malloc(sizeof(group));

@@ -7,12 +7,14 @@
 #define FALSE 0
 #define TRUE 1
 
+/*This function shows users' info if the command is "info"*/
 void info(user_info* head_user)
 {
 	while ((head_user = head_user->next) != NULL)
 		printf("\t%s\n", head_user->username);
 }
 
+/*This function shows a specific user's info*/
 int about(user_info* head)
 {
 	char* input=(char*)malloc(0);

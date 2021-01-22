@@ -10,6 +10,7 @@
 #define MESSAGES_FILE_ADDRESS "message.txt"
 #define GROUP_FILE_ADDRESS "group.txt"
 
+/*This function handles saving data in the file*/
 void save_process(user_info* head_user, message* head_message, group* head_group)
 {
 	if (!save_users(head_user))
@@ -21,6 +22,7 @@ void save_process(user_info* head_user, message* head_message, group* head_group
 	exit(0);
 }
 
+/*This function saves users' info in the file*/
 int save_users(user_info* head)
 {
 	FILE* output = fopen(USERS_FILE_ADDRESS, "w");
@@ -32,6 +34,7 @@ int save_users(user_info* head)
 	return TRUE;
 }
 
+/*This function saves messages in the file*/
 int save_messages(message* head)
 {
 	FILE* output = fopen(MESSAGES_FILE_ADDRESS, "w");
@@ -43,6 +46,7 @@ int save_messages(message* head)
 	return TRUE;
 }
 
+/*This function saves groups in the file*/
 int save_groups(group* head)
 {
 	FILE* output = fopen(GROUP_FILE_ADDRESS, "w");
@@ -58,6 +62,7 @@ int save_groups(group* head)
 	return TRUE;
 }
 
+/*This function handles reading data from file*/
 void read_process(user_info* head_user, message* head_message, group* head_group)
 {
 	read_users(head_user);
@@ -65,6 +70,7 @@ void read_process(user_info* head_user, message* head_message, group* head_group
 	read_groups(head_group);
 }
 
+/*This function reads users' data from file*/
 int read_users(user_info* head)
 {
 	FILE* input = fopen(USERS_FILE_ADDRESS, "r");
@@ -99,6 +105,7 @@ int read_users(user_info* head)
 	}
 }
 
+/*This function reads messages from the file*/
 int read_messages(message* head)
 {
 	FILE* input = fopen(MESSAGES_FILE_ADDRESS, "r");
@@ -135,6 +142,7 @@ int read_messages(message* head)
 	}
 }
 
+/*This function reads groups from the file*/
 int read_groups(group* head)
 {
 	FILE* input = fopen(GROUP_FILE_ADDRESS, "r");
@@ -169,6 +177,7 @@ int read_groups(group* head)
 	}
 }
 
+/*This function reads a line from file and returns it to the reading functions*/
 char* read_from_file(FILE* input, char sep)
 {
 	char* line = (char*)malloc(0);
@@ -196,6 +205,7 @@ char* read_from_file(FILE* input, char sep)
 	}
 }
 
+/*This function is only separated from read_groups to remove warning*/
 char** groups_users(int num)
 {
 	char** users = (char**)malloc(num * sizeof(char*));

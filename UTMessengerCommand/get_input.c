@@ -8,6 +8,7 @@
 #define PHONE_NUMBER_LENGTH 11
 #define MIN_PASS_LENGTH 6
 
+/*This function reads phone number from console*/
 int get_phone_number(char* phone_number)
 {
 	for (int i = 0; i <= PHONE_NUMBER_LENGTH; i++)
@@ -26,6 +27,7 @@ int get_phone_number(char* phone_number)
 	return TRUE;
 }
 
+/*This function reads username from console*/
 int get_username(char** username)
 {
 	*username = NULL;
@@ -62,6 +64,7 @@ int get_username(char** username)
 	return TRUE;
 }
 
+/*This function reads password from console*/
 int get_password(char** password)
 {
 	*password = NULL;
@@ -98,6 +101,7 @@ int get_password(char** password)
 	return TRUE;
 }
 
+/*This function reads message from console*/
 int get_message(char** message)
 {
 	*message = NULL;
@@ -132,6 +136,7 @@ int get_message(char** message)
 	return TRUE;
 }
 
+/*This function reads command from console*/
 int get_command(char** input)
 {
 	*input = NULL;
@@ -167,9 +172,9 @@ int get_command(char** input)
 	return TRUE;
 }
 
+/*This function clears the std out buffer if needed*/
 void clear_buffer()
 {
-	char c;
-	while ((c = (char)getchar()) != '\n');
+	while (getchar() != '\n');
 }
 

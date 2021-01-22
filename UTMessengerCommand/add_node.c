@@ -2,6 +2,7 @@
 #include "add_node.h"
 #define TRUE 1
 
+/*The process of inserting the new user node to the linked list*/
 void insert_user(user_info* head, user_info* new_user)
 {
 	while (TRUE)
@@ -16,6 +17,7 @@ void insert_user(user_info* head, user_info* new_user)
 	}
 }
 
+/*The process of inserting the new message node to  the linked list*/
 void insert_message(message* head, message* new_message)
 {
 	while (TRUE)
@@ -30,6 +32,7 @@ void insert_message(message* head, message* new_message)
 	}
 }
 
+/*The process of inserting the new group node to the linked list*/
 void insert_group(group* head, group* new_group)
 {
 	while (TRUE)

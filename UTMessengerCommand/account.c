@@ -28,10 +28,11 @@
 #define ADD_TO 16
 #define PHONE_NUMBER_LENGTH 11
 
+/*This function executes when the user successfully login or sign up*/
 void sign_in_interface(user_info* head_user, group* head_group, message* head_message, user_info* user)
 {
 	printf("Welcome @%s\n", user->username);
-	message_info_print(user, head_message);
+	message_info_print(user, head_message); /*Showing the unread received messages*/
 	while (TRUE)
 	{
 		int enter_check;
@@ -67,6 +68,7 @@ void sign_in_interface(user_info* head_user, group* head_group, message* head_me
 	}
 }
 
+/*This function is the process of login*/
 void sign_in(user_info* head_user, group* head_group, message* head_message)
 {
 	char* input_username = (char*)malloc(0);
@@ -102,6 +104,7 @@ void sign_in(user_info* head_user, group* head_group, message* head_message)
 	sign_in_interface(head_user, head_group, head_message, user);
 }
 
+/*This function is the sign up process*/
 void sign_up(user_info* head_user, group* head_group, message* head_message)
 {
 	char* input_username = (char*)malloc(0);

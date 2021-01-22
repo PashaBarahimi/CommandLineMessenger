@@ -10,6 +10,7 @@
 #define FALSE 0
 #define TRUE 1
 
+/*Process of sending a message to another user*/
 int send_message(user_info* head_user, user_info* sender, group* head_group, message* head_message)
 {
 	int enter_check;
@@ -32,6 +33,7 @@ int send_message(user_info* head_user, user_info* sender, group* head_group, mes
 	return group_message_check(head_group, head_message, sender, input, enter_check);
 }
 
+/*This function checks if the entered name belongs to a group to send the message*/
 int group_message_check(group* head_group, message* head_message, user_info* sender, char* group_name, int enter_check)
 {
 	group* receiver = group_name_existence_check(head_group, group_name);
@@ -63,6 +65,7 @@ int group_message_check(group* head_group, message* head_message, user_info* sen
 	return send_message_to_group(receiver, head_message, input_message, sender);
 }
 
+/*This function sends message to the group*/
 int send_message_to_group(group* receiver, message* head_message, char* input_message, user_info* sender)
 {
 	int check = TRUE;
@@ -82,6 +85,7 @@ int send_message_to_group(group* receiver, message* head_message, char* input_me
 	return TRUE;
 }
 
+/*This function is the process of showing sent messages*/
 int show_sent_messages(user_info* head_user, user_info* sender, group* head_group, message* head_message)
 {
 	char* input = (char*)malloc(0);
@@ -106,6 +110,7 @@ int show_sent_messages(user_info* head_user, user_info* sender, group* head_grou
 	return group_sent_messages(sender, input, head_message, head_group);
 }
 
+/*This function prints the sent messages*/
 int print_sent_messages(char* sender, char* receiver, message* head)
 {
 	int check = FALSE;
@@ -113,13 +118,10 @@ int print_sent_messages(char* sender, char* receiver, message* head)
 	{
 		if (strcmp(sender, head->sender_username) == 0 && strcmp(receiver, head->receiver_username) == 0)
 		{
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), head->read_check == FALSE ? FOREGROUND_RED : FOREGROUND_GREEN);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), head->read_check == FALSE ? FOREGROUND_RED : FOREGROUND_GREEN); /*Changing foreground color dependent to the reading status*/
 			check = TRUE;
-			if (head->message_date->min >= 10)
-				printf("\tMessage to @%s in %d/%d/%d at %d:%d -> %s\n", receiver, head->message_date->month, head->message_date->day, head->message_date->year, head->message_date->hour, head->message_date->min, head->content);
-			else
-				printf("\tMessage to @%s in %d/%d/%d at %d:0%d -> %s\n", receiver, head->message_date->month, head->message_date->day, head->message_date->year, head->message_date->hour, head->message_date->min, head->content);
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07);
+			printf("\tMessage to @%s in %02d/%02d/%d at %02d:%02d -> %s\n", receiver, head->message_date->month, head->message_date->day, head->message_date->year, head->message_date->hour, head->message_date->min, head->content);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0x07); /*Resetting foreground color*/
 		}
 	}
 	if (!check)
@@ -127,6 +129,7 @@ int print_sent_messages(char* sender, char* receiver, message* head)
 	return check;
 }
 
+/*This function searches for group messages that the user has sent*/
 int group_sent_messages(user_info* sender, char* group_name, message* head_message, group* head_group)
 {
 	group* receiver = group_name_existence_check(head_group, group_name);
@@ -154,6 +157,7 @@ int group_sent_messages(user_info* sender, char* group_name, message* head_messa
 	return print_sent_messages(sender->username, receiver->name, head_message);
 }
 
+/*This function is the process of showing received messages*/
 int show_received_messages(user_info* head_user, user_info* receiver, group* head_group, message* head_message)
 {
 	char* input = (char*)malloc(0);
@@ -178,6 +182,7 @@ int show_received_messages(user_info* head_user, user_info* receiver, group* hea
 	return group_received_messages(receiver, input, head_message, head_group);
 }
 
+/*This function prints the received messages*/
 int print_received_messages(char* sender, char* receiver, message* head)
 {
 	int check = FALSE;
@@ -186,10 +191,7 @@ int print_received_messages(char* sender, char* receiver, message* head)
 		if (strcmp(sender, head->sender_username) == 0 && strcmp(receiver, head->receiver_username) == 0)
 		{
 			check = TRUE;
-			if (head->message_date->min >= 10)
-				printf("\tMessage from @%s in %d/%d/%d at %d:%d -> %s\n", sender, head->message_date->month, head->message_date->day, head->message_date->year, head->message_date->hour, head->message_date->min, head->content);
-			else
-				printf("\tMessage from @%s in %d/%d/%d at %d:0%d -> %s\n", sender, head->message_date->month, head->message_date->day, head->message_date->year, head->message_date->hour, head->message_date->min, head->content);
+			printf("\tMessage from @%s in %02d/%02d/%d at %02d:%02d -> %s\n", sender, head->message_date->month, head->message_date->day, head->message_date->year, head->message_date->hour, head->message_date->min, head->content);
 			head->read_check = TRUE;
 		}
 	}
@@ -198,6 +200,7 @@ int print_received_messages(char* sender, char* receiver, message* head)
 	return check;
 }
 
+/*This function searches for group messages that the user has received*/
 int group_received_messages(user_info* receiver, char* group_name, message* head_message, group* head_group)
 {
 	group* sender = group_name_existence_check(head_group, group_name);
@@ -225,16 +228,12 @@ int group_received_messages(user_info* receiver, char* group_name, message* head
 	return print_received_messages(sender->name, receiver->username, head_message);
 }
 
+/*This function prints the unread messages' info when the user login*/
 void message_info_print(user_info* user, message* head_message)
 {
 	printf("\tUnread messages:\n");
 	while ((head_message = head_message->next) != NULL)
 		if (!strcmp(user->username, head_message->receiver_username) && head_message->read_check == FALSE)
-		{
-			if (head_message->message_date->min >= 10)
-				printf("\tMessage from @%s in %d/%d/%d at %d:%d\n", head_message->sender_username, head_message->message_date->month, head_message->message_date->day, head_message->message_date->year, head_message->message_date->hour, head_message->message_date->min);
-			else
-				printf("\tMessage from @%s in %d/%d/%d at %d:0%d\n", head_message->sender_username, head_message->message_date->month, head_message->message_date->day, head_message->message_date->year, head_message->message_date->hour, head_message->message_date->min);
-		}
+			printf("\tMessage from @%s in %02d/%02d/%d at %02d:%02d\n", head_message->sender_username, head_message->message_date->month, head_message->message_date->day, head_message->message_date->year, head_message->message_date->hour, head_message->message_date->min);
 }
 
