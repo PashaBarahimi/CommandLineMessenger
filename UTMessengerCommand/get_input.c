@@ -166,6 +166,7 @@ int get_command(char** input)
 	if (strlen(*input) == 0)
 	{
 		printf("\tWrong command format! No characters entered.\n");
+		if (temp != '\n') clear_buffer();
 		return FALSE;
 	}
 	if (temp == '\n') return ENTER;

@@ -28,22 +28,22 @@ void help(int section)
 	switch (section)
 	{
 	case MAIN_MENU:
-		printf("login <Username> <Password>\n");
-		printf("signup <Username> <Password> <Phone Number>\n");
-		printf("close\n");
+		printf("\tlogin <Username> <Password>\n");
+		printf("\tsignup <Username> <Password> <Phone Number>\n");
+		printf("\tclose\n");
 		break;
 	case SIGNED_IN:
-		printf("logout\n");
-		printf("edit_username <New Username>\n");
-		printf("edit_pass <New Password>\n");
-		printf("send <Username/Group Name> <Content>\n");
-		printf("info\n");
-		printf("about <Username>\n");
-		printf("show_sent <Username/Group Name>\n");
-		printf("show_received <Username/Group Name>\n");
-		printf("close\n");
-		printf("create_group <Group Name>\n");
-		printf("add_to <Group Name> <Username>\n");
+		printf("\tlogout\n");
+		printf("\tedit_username <New Username>\n");
+		printf("\tedit_pass <New Password>\n");
+		printf("\tsend <Username/Group Name> <Content>\n");
+		printf("\tinfo\n");
+		printf("\tabout <Username>\n");
+		printf("\tshow_sent <Username/Group Name>\n");
+		printf("\tshow_received <Username/Group Name>\n");
+		printf("\tclose\n");
+		printf("\tcreate_group <Group Name>\n");
+		printf("\tadd_to <Group Name> <Username>\n");
 		break;
 	default:
 		break;

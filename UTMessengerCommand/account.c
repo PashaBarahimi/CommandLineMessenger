@@ -115,9 +115,9 @@ void sign_up(user_info* head_user, group* head_group, message* head_message)
 		printf("\tWrong command format.\n");
 		return;
 	}
-	if (username_existence_check(head_user, input_username) != NULL)
+	if (username_existence_check(head_user, input_username) != NULL || group_name_existence_check(head_group,input_username) != NULL)
 	{
-		printf("\tThis username already exists.\n");
+		printf("\tThis name already exists.\n");
 		if (enter_check != ENTER) clear_buffer();
 		return;
 	}

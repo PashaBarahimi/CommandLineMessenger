@@ -17,7 +17,7 @@ void info(user_info* head_user)
 /*This function shows a specific user's info*/
 int about(user_info* head)
 {
-	char* input=(char*)malloc(0);
+	char* input = (char*)malloc(0);
 	int enter_check;
 	if ((enter_check = get_username(&input)) == FALSE) return FALSE;
 	user_info* about_user;
@@ -32,7 +32,7 @@ int about(user_info* head)
 		printf("\tThis username doesn't exist.\n");
 		return FALSE;
 	}
-	printf("\t%s->%s\n", about_user->username, about_user->phone_number);
+	printf("\t%s->%s Joined %02d/%02d/%d at %02d:%02d\n", about_user->username, about_user->phone_number, about_user->sign_up_date->month, about_user->sign_up_date->day, about_user->sign_up_date->year, about_user->sign_up_date->hour, about_user->sign_up_date->min);
 	return TRUE;
 }
 
