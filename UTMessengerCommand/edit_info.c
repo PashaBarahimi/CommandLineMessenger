@@ -18,16 +18,19 @@ int edit_username(user_info* user, user_info* head_user, group* head_group, mess
 	{
 		printf("\tWrong command format.\n");
 		clear_buffer();
+		free(input);
 		return FALSE;
 	}
 	if (!strcmp(input, user->username))
 	{
 		printf("\tThis username is already yours.\n");
+		free(input);
 		return FALSE;
 	}
 	if (username_existence_check(head_user, input) != NULL || group_name_existence_check(head_group, input) != NULL)
 	{
 		printf("\tThis username already exists.\n");
+		free(input);
 		return FALSE;
 	}
 	edit_username_in_groups(user, head_group, input);
@@ -47,11 +50,13 @@ int edit_password(user_info* user)
 	{
 		printf("\tWrong command format.\n");
 		clear_buffer();
+		free(input);
 		return FALSE;
 	}
 	if (!strcmp(input, user->password))
 	{
 		printf("\tThis password is already yours.\n");
+		free(input);
 		return FALSE;
 	}
 	user->password = input;

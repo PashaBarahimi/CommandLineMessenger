@@ -23,6 +23,7 @@ int send_message(user_info* head_user, user_info* sender, group* head_group, mes
 		{
 			printf("\tThis username is yours!\n");
 			if (enter_check != ENTER) clear_buffer();
+			free(input);
 			return FALSE;
 		}
 		char* input_message = (char*)malloc(0);
@@ -95,6 +96,7 @@ int show_sent_messages(user_info* head_user, user_info* sender, group* head_grou
 	{
 		printf("\tWrong command format.\n");
 		clear_buffer();
+		free(input);
 		return FALSE;
 	}
 	user_info* receiver = username_existence_check(head_user, input);
@@ -103,6 +105,7 @@ int show_sent_messages(user_info* head_user, user_info* sender, group* head_grou
 		if (!strcmp(sender->username, input))
 		{
 			printf("\tThis username is yours!\n");
+			free(input);
 			return FALSE;
 		}
 		return print_sent_messages(sender->username, receiver->username, head_message);
@@ -167,6 +170,7 @@ int show_received_messages(user_info* head_user, user_info* receiver, group* hea
 	{
 		printf("\tWrong command format.\n");
 		clear_buffer();
+		free(input);
 		return FALSE;
 	}
 	user_info* sender = username_existence_check(head_user, input);
@@ -175,6 +179,7 @@ int show_received_messages(user_info* head_user, user_info* receiver, group* hea
 		if (!strcmp(receiver->username, input))
 		{
 			printf("\tThis username is yours!\n");
+			free(input);
 			return FALSE;
 		}
 		return print_received_messages(sender->username, receiver->username, head_message);

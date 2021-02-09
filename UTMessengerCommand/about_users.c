@@ -25,13 +25,16 @@ int about(user_info* head)
 	{
 		printf("\tWrong command format.\n");
 		clear_buffer();
+		free(input);
 		return FALSE;
 	}
 	if ((about_user = username_existence_check(head, input)) == NULL)
 	{
 		printf("\tThis username doesn't exist.\n");
+		free(input);
 		return FALSE;
 	}
+	free(input);
 	printf("\t%s->%s Joined %02d/%02d/%d at %02d:%02d\n", about_user->username, about_user->phone_number, about_user->sign_up_date->month, about_user->sign_up_date->day, about_user->sign_up_date->year, about_user->sign_up_date->hour, about_user->sign_up_date->min);
 	return TRUE;
 }

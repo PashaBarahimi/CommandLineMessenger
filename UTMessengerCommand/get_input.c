@@ -58,6 +58,7 @@ int get_username(char** username)
 	{
 		if (temp != '\n') clear_buffer();
 		printf("\tWrong format! No characters entered.\n");
+		free(*username);
 		return FALSE;
 	}
 	if (temp == '\n') return ENTER;
@@ -95,6 +96,7 @@ int get_password(char** password)
 	{
 		if (temp != '\n') clear_buffer();
 		printf("\tWrong password format! Password should at least contain %d characters.\n", MIN_PASS_LENGTH);
+		free(*password);
 		return FALSE;
 	}
 	if (temp == '\n') return ENTER;
@@ -131,6 +133,7 @@ int get_message(char** message)
 	if (strlen(*message) == 0)
 	{
 		printf("\tWrong message format! No characters entered.\n");
+		free(*message);
 		return FALSE;
 	}
 	return TRUE;
@@ -167,6 +170,7 @@ int get_command(char** input)
 	{
 		printf("\tWrong command format! No characters entered.\n");
 		if (temp != '\n') clear_buffer();
+		free(*input);
 		return FALSE;
 	}
 	if (temp == '\n') return ENTER;

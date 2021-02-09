@@ -19,11 +19,13 @@ int new_group(user_info* head_user, user_info* admin, group* head_group)
 	{
 		printf("\tWrong command format.\n");
 		clear_buffer();
+		free(input);
 		return FALSE;
 	}
 	if (group_name_existence_check(head_group, input) != NULL || username_existence_check(head_user, input) != NULL)
 	{
 		printf("\tThis name already exists.\n");
+		free(input);
 		return FALSE;
 	}
 	printf("\tGroup created successfully.\n");
